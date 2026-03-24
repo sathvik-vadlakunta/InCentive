@@ -72,45 +72,6 @@
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-/* Social proof strip */
-.hero-proof {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.hero-avatars {
-  display: flex;
-}
-
-.hero-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid var(--background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: var(--text-xs);
-  color: white;
-}
-
-.hero-avatar + .hero-avatar {
-  margin-left: -10px;
-}
-
-.hero-proof-text {
-  font-size: var(--text-sm);
-  color: var(--muted-foreground);
-}
-
-.hero-proof-text strong {
-  color: var(--foreground);
 }
 
 /* === Decorative Visual (right column) === */
@@ -210,11 +171,6 @@
 
   .hero-actions {
     justify-content: center;
-  }
-
-  .hero-proof {
-    justify-content: center;
-    flex-wrap: wrap;
   }
 
   .hero-visual {

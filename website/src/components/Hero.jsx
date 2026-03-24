@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Button from './Button'
 import './Hero.css'
 
@@ -47,21 +47,6 @@ export default function Hero() {
             <Button variant="primary" icon={ArrowRight} href="#cta">
               Start Learning Free
             </Button>
-            <Button variant="secondary" icon={Play} href="#programs">
-              See Programs
-            </Button>
-          </div>
-
-          <div className="hero-proof">
-            <div className="hero-avatars">
-              <div className="hero-avatar" style={{ background: 'var(--secondary)' }}>J</div>
-              <div className="hero-avatar" style={{ background: 'var(--tertiary)' }}>A</div>
-              <div className="hero-avatar" style={{ background: 'var(--quaternary)' }}>M</div>
-              <div className="hero-avatar" style={{ background: 'var(--accent)' }}>S</div>
-            </div>
-            <p className="hero-proof-text">
-              <strong>2,400+</strong> learners already growing their financial confidence
-            </p>
           </div>
         </div>
 
