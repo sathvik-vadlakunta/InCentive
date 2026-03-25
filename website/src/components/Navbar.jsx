@@ -4,10 +4,8 @@ import Button from './Button'
 import './Navbar.css'
 
 const links = [
-  { label: 'Programs', href: '#programs' },
   { label: 'About', href: '#about' },
   { label: 'Resources', href: '#resources' },
-  { label: 'Community', href: '#community' },
 ]
 
 export default function Navbar() {

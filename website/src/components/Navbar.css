@@ -21,6 +21,7 @@
   font-size: var(--text-xl);
   color: var(--foreground);
   text-decoration: none;
+  letter-spacing: 0;
   flex-shrink: 0;
 }
 
