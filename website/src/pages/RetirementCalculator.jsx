@@ -117,7 +117,7 @@ export default function RetirementCalculator() {
                 <div className="calc-chart-card">
                   <h3>Savings Growth by Age</h3>
                   <ResponsiveContainer width="100%" height={300}>
-                    <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                    <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 20 }}>
                       <defs>
                         <linearGradient id="gradRetContrib" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.6} />
