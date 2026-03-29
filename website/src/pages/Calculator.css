@@ -1,11 +1,7 @@
 /* Shared styles for all calculator pages */
 
-.calc-page {
-  padding-bottom: 0;
-}
-
 .calc-page .container {
-  max-width: 720px;
+  max-width: var(--container-width);
 }
 
 .calc-header {
@@ -37,18 +33,66 @@
   color: var(--foreground);
 }
 
-/* Calculator card */
+/* Two-column layout: inputs left, chart right */
+.calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Calculator card (inputs) */
 .calc-card {
   background-color: var(--card);
   border: var(--border-width) solid var(--foreground);
   border-radius: var(--radius-lg);
-  padding: 40px;
+  padding: 36px;
   box-shadow: var(--shadow-card);
+}
+
+/* Chart panel */
+.calc-chart-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calc-chart-card {
+  background-color: var(--card);
+  border: var(--border-width) solid var(--foreground);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.calc-chart-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.calc-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--muted-foreground);
+  text-align: center;
+  gap: 12px;
+}
+
+.calc-chart-empty p {
+  font-size: var(--text-sm);
 }
 
 /* Form inputs */
 .calc-field {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.calc-field:last-child {
+  margin-bottom: 0;
 }
 
 .calc-label {
@@ -88,28 +132,16 @@
   opacity: 0.6;
 }
 
-/* Results */
-.calc-results {
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: var(--border-width) solid var(--border);
-}
-
-.calc-results h3 {
-  font-size: var(--text-lg);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
+/* Results grid (below chart) */
 .calc-result-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .calc-result-item {
   text-align: center;
-  padding: 20px 16px;
+  padding: 20px 12px;
   background-color: var(--muted);
   border-radius: var(--radius-md);
   border: var(--border-width) solid var(--border);
@@ -118,7 +150,7 @@
 .calc-result-value {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   color: var(--foreground);
   margin-bottom: 4px;
 }
@@ -135,14 +167,77 @@
 .calc-result-item--secondary .calc-result-value { color: var(--secondary); }
 .calc-result-item--tertiary .calc-result-value { color: var(--tertiary); }
 
+/* Chart legend */
+.calc-chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.calc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  color: var(--muted-foreground);
+}
+
+.calc-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Recharts overrides for tooltip */
+.calc-tooltip {
+  background-color: var(--card) !important;
+  border: var(--border-width) solid var(--foreground) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-pop) !important;
+  padding: 12px 16px !important;
+}
+
+.calc-tooltip .recharts-tooltip-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  margin-bottom: 6px;
+}
+
+.calc-tooltip .recharts-tooltip-item {
+  font-family: var(--font-body);
+  font-size: var(--text-xs) !important;
+  padding: 2px 0 !important;
+}
+
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .calc-layout {
+    grid-template-columns: 1fr;
+  }
+
   .calc-card {
-    padding: 24px 20px;
+    box-shadow: 3px 3px 0px 0px var(--border);
+  }
+
+  .calc-chart-card {
     box-shadow: 3px 3px 0px 0px var(--border);
   }
 
   .calc-result-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .calc-card {
+    padding: 24px 20px;
+  }
+
+  .calc-chart-card {
+    padding: 24px 16px;
   }
 }
