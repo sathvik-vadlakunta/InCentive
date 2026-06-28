@@ -1,0 +1,362 @@
+/* ================================================ */
+/* ABOUT — HERO                                     */
+/* ================================================ */
+
+.about-hero {
+  text-align: center;
+  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero h1 {
+  margin-bottom: 16px;
+}
+
+.about-hero-sub {
+  font-size: var(--text-md);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Decorative shapes */
+.about-hero-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.about-shape {
+  position: absolute;
+  opacity: 0.12;
+}
+
+.about-shape--circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  top: 10px;
+  right: 8%;
+  animation: float 4s ease-in-out infinite;
+}
+
+.about-shape--triangle {
+  width: 0;
+  height: 0;
+  border-left: 45px solid transparent;
+  border-right: 45px solid transparent;
+  border-bottom: 78px solid var(--secondary);
+  top: 30px;
+  left: 6%;
+  animation: float 5s ease-in-out infinite 0.5s;
+}
+
+.about-shape--square {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-sm);
+  background-color: var(--tertiary);
+  bottom: 0;
+  left: 18%;
+  transform: rotate(15deg);
+  animation: spin-slow 20s linear infinite;
+}
+
+/* ================================================ */
+/* ABOUT — MISSION                                  */
+/* ================================================ */
+
+.about-mission {
+  padding-top: 48px;
+}
+
+.about-mission-content {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-mission-content h2 {
+  margin-bottom: 28px;
+}
+
+.about-mission-content p {
+  margin-bottom: 18px;
+  font-size: var(--text-base);
+  line-height: 1.8;
+}
+
+.about-mission-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ================================================ */
+/* ABOUT — TEAM                                     */
+/* ================================================ */
+
+.about-team {
+  text-align: center;
+}
+
+.about-team > .container > h2 {
+  margin-bottom: 48px;
+}
+
+.about-team-group {
+  margin-bottom: 56px;
+}
+
+.about-team-group:last-child {
+  margin-bottom: 0;
+}
+
+.about-team-group h3 {
+  margin-bottom: 32px;
+  font-size: var(--text-xl);
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.about-team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+
+.about-person-card {
+  text-align: center;
+}
+
+.about-person-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: var(--border-width) solid var(--foreground);
+  box-shadow: 4px 4px 0px 0px var(--foreground);
+  margin: 0 auto 16px;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.about-person-photo:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--foreground);
+}
+
+.about-person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-person-card h4 {
+  font-size: var(--text-lg);
+  margin-bottom: 4px;
+}
+
+.about-person-role {
+  font-size: var(--text-sm);
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* ================================================ */
+/* ABOUT — CHAPTERS MAP                             */
+/* ================================================ */
+
+.about-chapters {
+  background-color: var(--muted);
+}
+
+.about-chapters > .container > h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.about-chapters-sub {
+  text-align: center;
+  font-size: var(--text-base);
+  margin-bottom: 40px;
+}
+
+/* Map wrapper */
+.about-map-wrapper {
+  position: relative;
+  background-color: var(--card);
+  border: var(--border-width) solid var(--foreground);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.about-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* SVG state shapes */
+.about-map-state {
+  fill: var(--background);
+  stroke: var(--border);
+  stroke-width: 0.5;
+  outline: none;
+  pointer-events: none;
+}
+
+/* Map pins */
+.about-map-pin {
+  fill: var(--accent);
+  stroke: var(--foreground);
+  stroke-width: 2;
+  cursor: pointer;
+  pointer-events: all;
+  transition:
+    transform 200ms var(--ease-bounce),
+    fill 200ms ease;
+  transform-origin: center;
+}
+
+.about-map-pin:hover,
+.about-map-pin--active {
+  fill: var(--secondary);
+  transform: scale(1.4);
+}
+
+.about-map-pin-pulse {
+  fill: var(--accent);
+  pointer-events: none;
+  transform-origin: center;
+  animation: about-pin-pulse 2.5s ease-out infinite;
+}
+
+@keyframes about-pin-pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+/* Chapter popup card */
+.about-chapter-popup {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--card);
+  border: var(--border-width) solid var(--foreground);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+  padding: 20px 28px 20px 20px;
+  min-width: 280px;
+  text-align: left;
+  animation: pop-in 300ms var(--ease-bounce);
+  z-index: 10;
+}
+
+.about-chapter-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: var(--text-xl);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 200ms ease;
+}
+
+.about-chapter-close:hover {
+  color: var(--foreground);
+}
+
+.about-chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.about-chapter-header h4 {
+  font-size: var(--text-base);
+  line-height: 1.3;
+}
+
+.about-chapter-header svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.about-chapter-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  margin-bottom: 8px;
+}
+
+.about-chapter-detail svg {
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+.about-chapter-detail--muted {
+  color: var(--muted-foreground);
+}
+
+.about-chapter-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent);
+  transition: color 200ms ease;
+}
+
+.about-chapter-ig:hover {
+  color: var(--secondary);
+}
+
+.about-chapter-ig svg {
+  flex-shrink: 0;
+}
+
+/* ================================================ */
+/* RESPONSIVE                                       */
+/* ================================================ */
+
+@media (max-width: 768px) {
+  .about-team-grid {
+    gap: 36px;
+  }
+
+  .about-person-photo {
+    width: 150px;
+    height: 150px;
+    box-shadow: 3px 3px 0px 0px var(--foreground);
+  }
+
+  .about-map-wrapper {
+    box-shadow: 3px 3px 0px 0px var(--border);
+  }
+
+  .about-chapter-popup {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 16px;
+    box-shadow: var(--shadow-pop);
+  }
+}
