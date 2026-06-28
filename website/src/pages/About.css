@@ -185,8 +185,8 @@
   margin-bottom: 40px;
 }
 
-/* Map wrapper */
-.about-map-wrapper {
+/* Map card */
+.about-map-card {
   position: relative;
   background-color: var(--card);
   border: var(--border-width) solid var(--foreground);
@@ -195,59 +195,40 @@
   overflow: hidden;
 }
 
-.about-map {
+.about-map-svg {
   display: block;
   width: 100%;
   height: auto;
 }
 
-/* SVG state shapes */
+/* State shapes */
 .about-map-state {
   fill: var(--background);
   stroke: var(--border);
-  stroke-width: 0.5;
-  outline: none;
-  pointer-events: none;
+  stroke-width: 0.75;
 }
 
-/* Map pins */
+/* Pin ring (subtle glow) */
+.about-map-pin-ring {
+  fill: var(--accent);
+  opacity: 0.2;
+}
+
+/* Pin dot */
 .about-map-pin {
   fill: var(--accent);
-  stroke: var(--foreground);
-  stroke-width: 2;
+  stroke: white;
+  stroke-width: 2.5;
   cursor: pointer;
-  pointer-events: all;
-  transition:
-    transform 200ms var(--ease-bounce),
-    fill 200ms ease;
-  transform-origin: center;
+  transition: fill 200ms ease;
 }
 
 .about-map-pin:hover,
 .about-map-pin--active {
   fill: var(--secondary);
-  transform: scale(1.4);
 }
 
-.about-map-pin-pulse {
-  fill: var(--accent);
-  pointer-events: none;
-  transform-origin: center;
-  animation: about-pin-pulse 2.5s ease-out infinite;
-}
-
-@keyframes about-pin-pulse {
-  0% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-
-/* Chapter popup card */
+/* Chapter popup */
 .about-chapter-popup {
   position: absolute;
   bottom: 24px;
@@ -257,7 +238,7 @@
   border: var(--border-width) solid var(--foreground);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-pop);
-  padding: 20px 28px 20px 20px;
+  padding: 20px 32px 20px 20px;
   min-width: 280px;
   text-align: left;
   animation: pop-in 300ms var(--ease-bounce);
@@ -267,7 +248,7 @@
 .about-chapter-close {
   position: absolute;
   top: 8px;
-  right: 10px;
+  right: 12px;
   font-size: var(--text-xl);
   color: var(--muted-foreground);
   cursor: pointer;
@@ -347,7 +328,7 @@
     box-shadow: 3px 3px 0px 0px var(--foreground);
   }
 
-  .about-map-wrapper {
+  .about-map-card {
     box-shadow: 3px 3px 0px 0px var(--border);
   }
 

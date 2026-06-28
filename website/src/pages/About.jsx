@@ -1,9 +1,13 @@
-import { useState } from 'react'
-import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
+import { useState, useMemo } from 'react'
+import { geoPath, geoAlbersUsa } from 'd3-geo'
+import { feature } from 'topojson-client'
 import { MapPin, Instagram, Users } from 'lucide-react'
+import usTopology from '../data/us-states-10m.json'
 import './About.css'
 
-const GEO_URL = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json'
+const projection = geoAlbersUsa().scale(1050).translate([480, 300])
+const pathGenerator = geoPath(projection)
+const states = feature(usTopology, usTopology.objects.states).features
 
 const chapters = [
   {
@@ -38,6 +42,12 @@ const chapters = [
 
 export default function AboutPage() {
   const [activeChapter, setActiveChapter] = useState(null)
+
+  const markers = useMemo(() => {
+    return chapters
+      .map((ch) => ({ ...ch, pos: projection(ch.coordinates) }))
+      .filter((ch) => ch.pos)
+  }, [])
 
   return (
     <>
@@ -114,8 +124,12 @@ export default function AboutPage() {
             <div className="about-team-grid">
               <div className="about-person-card">
                 <div className="about-person-photo">
-                  <img src="/images/advisor.jpg" alt="Board Advisor" />
+                  <img src="/images/advisor.jpg" alt="Frederick Steinmann" />
                 </div>
+                <h4>Frederick Steinmann</h4>
+                <p className="about-person-role">
+                  Assistant Research Professor at UNR
+                </p>
               </div>
             </div>
           </div>
@@ -129,32 +143,30 @@ export default function AboutPage() {
             Click a pin on the map to learn more about each chapter.
           </p>
 
-          <div
-            className="about-map-wrapper"
-            onClick={() => setActiveChapter(null)}
-          >
-            <ComposableMap
-              projection="geoAlbersUsa"
-              width={800}
-              height={500}
-              className="about-map"
+          <div className="about-map-card">
+            <svg
+              viewBox="0 0 960 600"
+              className="about-map-svg"
+              onClick={() => setActiveChapter(null)}
             >
-              <Geographies geography={GEO_URL}>
-                {({ geographies }) =>
-                  geographies.map((geo) => (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      className="about-map-state"
-                      tabIndex={-1}
-                    />
-                  ))
-                }
-              </Geographies>
-              {chapters.map((ch) => (
-                <Marker key={ch.id} coordinates={ch.coordinates}>
-                  <circle r={12} className="about-map-pin-pulse" />
+              {states.map((state, i) => (
+                <path
+                  key={i}
+                  d={pathGenerator(state)}
+                  className="about-map-state"
+                />
+              ))}
+              {markers.map((ch) => (
+                <g key={ch.id} className="about-map-marker-group">
                   <circle
+                    cx={ch.pos[0]}
+                    cy={ch.pos[1]}
+                    r={14}
+                    className="about-map-pin-ring"
+                  />
+                  <circle
+                    cx={ch.pos[0]}
+                    cy={ch.pos[1]}
                     r={8}
                     className={`about-map-pin ${
                       activeChapter?.id === ch.id ? 'about-map-pin--active' : ''
@@ -166,9 +178,9 @@ export default function AboutPage() {
                       )
                     }}
                   />
-                </Marker>
+                </g>
               ))}
-            </ComposableMap>
+            </svg>
 
             {activeChapter && (
               <div
